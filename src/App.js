@@ -35,7 +35,15 @@ function App() {
       })
   }, [])
 
+const handleFromAmountChange = e => {
+  setAmount(e.target.value)
+  setIsFromAmount(true)
+}
 
+const handleToAmountChange = e => {
+  setAmount(e.target.value)
+  setIsFromAmount(false)
+}
 
   return (
     <div className="App">
@@ -45,6 +53,7 @@ function App() {
         selectedCurrency={fromCurrency}
         setCurrency={e => setFromCurrency(e.target.value)}
         value={fromAmount}
+        onChangeAmount={handleFromAmountChange}
       />
       <div className='equals'>=</div>
       <InputBox
@@ -52,6 +61,7 @@ function App() {
         selectedCurrency={toCurrency}
         setCurrency={e => setToCurrency(e.target.value)}
         value={toAmount}
+        onChangeAmount={handleToAmountChange}
       />
     </div>
   )
