@@ -45,6 +45,14 @@ const handleToAmountChange = e => {
   setIsFromAmount(false)
 }
 
+useEffect(() => {
+  if(fromCurrency && toCurrency) {
+    fetch(`${BASE_URL}?base=${fromCurrency}&symbols=${toCurrency}`)
+    .then(res => res.json())
+    .then(data => setCurrencyConvert(data.rates[toCurrency]))
+  }
+}, [fromCurrency, toCurrency])
+
   return (
     <div className="App">
       <h1>Currency Converter</h1>
